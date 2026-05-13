@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Factorius — Facturation conforme 2026 pour professionnels</title>
+  <meta name="description" content="Factorius est un logiciel de facturation professionnelle conforme réforme 2026 : devis, factures, avoirs, Factur-X, flux PDP, relances et mises en demeure." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0F172A" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    :root{
+      --ink:#0F172A;
+      --ink-soft:#334155;
+      --muted:#64748B;
+      --line:#E2E8F0;
+      --bg:#F8FAFC;
+      --white:#FFFFFF;
+      --blue:#1D4ED8;
+      --blue-dark:#1E3A8A;
+      --green:#059669;
+      --green-soft:#ECFDF5;
+      --amber:#F59E0B;
+      --red:#DC2626;
+      --shadow:0 24px 70px rgba(15,23,42,.12);
+      --shadow-soft:0 16px 40px rgba(15,23,42,.08);
+      --radius:24px;
+    }
+
+    body{
+      background:
+        radial-gradient(circle at top left, rgba(29,78,216,.12), transparent 34%),
+        radial-gradient(circle at top right, rgba(5,150,105,.10), transparent 30%),
+        var(--bg);
+      color:var(--ink);
+      line-height:1.5;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .page{
+      min-height:100vh;
+      overflow:hidden;
+    }
+
+    .container{
+      width:min(1180px, calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(18px);
+      background:rgba(248,250,252,.82);
+      border-bottom:1px solid rgba(226,232,240,.9);
+    }
+
+    .nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
+      letter-spacing:-.04em;
+      font-size:1.35rem;
+    }
+
+    .brand-mark{
+      width:40px;
+      height:40px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--ink),var(--blue));
+      color:white;
+      display:grid;
+      place-items:center;
+      box-shadow:0 12px 30px rgba(29,78,216,.28);
+      font-weight:900;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      color:var(--ink-soft);
+      font-size:.94rem;
+      font-weight:650;
+    }
+
+    .nav-links a:hover{
+      color:var(--blue);
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .btn{
+      border:0;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:46px;
+      padding:0 18px;
+      border-radius:999px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.18s ease;
+      white-space:nowrap;
+      font-size:.94rem;
+    }
+
+    .btn-primary{
+      background:var(--ink);
+      color:white;
+      box-shadow:0 16px 40px rgba(15,23,42,.22);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      background:#020617;
+    }
+
+    .btn-secondary{
+      background:white;
+      border:1px solid var(--line);
+      color:var(--ink);
+    }
+
+    .btn-secondary:hover{
+      border-color:#CBD5E1;
+      transform:translateY(-1px);
+    }
+
+    .hero{
+      padding:86px 0 72px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:54px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:white;
+      border:1px solid var(--line);
+      color:var(--blue-dark);
+      font-weight:850;
+      font-size:.82rem;
+      box-shadow:var(--shadow-soft);
+      margin-bottom:22px;
+    }
+
+    .dot{
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 0 5px rgba(5,150,105,.13);
+    }
+
+    h1{
+      font-size:clamp(2.7rem,5vw,5.25rem);
+      line-height:.96;
+      letter-spacing:-.075em;
+      font-weight:950;
+      max-width:850px;
+    }
+
+    .hero p.lead{
+      margin-top:24px;
+      font-size:1.17rem;
+      color:var(--ink-soft);
+      max-width:660px;
+    }
+
+    .hero p.lead strong{
+      color:var(--ink);
+    }
+
+    .hero-cta{
+      margin-top:34px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .proof-line{
+      margin-top:22px;
+      color:var(--muted);
+      font-size:.94rem;
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .proof-line span{
+      display:flex;
+      align-items:center;
+      gap:7px;
+    }
+
+    .check{
+      color:var(--green);
+      font-weight:900;
+    }
+
+    .mockup{
+      position:relative;
+    }
+
+    .app-card{
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(226,232,240,.95);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      padding:18px;
+      transform:rotate(1deg);
+    }
+
+    .app-inner{
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#F8FAFC;
+    }
+
+    .app-topbar{
+      height:58px;
+      background:white;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 18px;
+    }
+
+    .window-dots{
+      display:flex;
+      gap:7px;
+    }
+
+    .window-dots i{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#CBD5E1;
+    }
+
+    .status-pill{
+      background:var(--green-soft);
+      color:#047857;
+      border:1px solid #A7F3D0;
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:.78rem;
+      font-weight:850;
+    }
+
+    .app-body{
+      display:grid;
+      grid-template-columns:150px 1fr;
+      min-height:470px;
+    }
+
+    .sidebar{
+      background:#0F172A;
+      padding:18px 12px;
+      color:#CBD5E1;
+    }
+
+    .side-item{
+      padding:11px 12px;
+      border-radius:12px;
+      margin-bottom:7px;
+      font-size:.82rem;
+      font-weight:750;
+    }
+
+    .side-item.active{
+      background:rgba(255,255,255,.12);
+      color:white;
+    }
+
+    .main-panel{
+      padding:22px;
+    }
+
+    .dash-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom:18px;
+    }
+
+    .dash-head h3{
+      font-size:1.15rem;
+      letter-spacing:-.03em;
+    }
+
+    .mini-btn{
+      background:var(--blue);
+      color:white;
+      border-radius:12px;
+      padding:10px 12px;
+      font-size:.78rem;
+      font-weight:850;
+    }
+
+    .kpi-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-bottom:16px;
+    }
+
+    .kpi{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px;
+    }
+
+    .kpi small{
+      color:var(--muted);
+      font-size:.72rem;
+      font-weight:750;
+    }
+
+    .kpi strong{
+      display:block;
+      margin-top:5px;
+      font-size:1.08rem;
+      letter-spacing:-.03em;
+    }
+
+    .invoice-card{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:16px;
+      margin-top:12px;
+    }
+
+    .invoice-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:12px;
+      align-items:center;
+      padding:12px 0;
+      border-bottom:1px solid #EEF2F7;
+    }
+
+    .invoice-row:last-child{
+      border-bottom:0;
+    }
+
+    .invoice-row strong{
+      display:block;
+      font-size:.9rem;
+    }
+
+    .invoice-row small{
+      color:var(--muted);
+      font-size:.76rem;
+    }
+
+    .tag{
+      border-radius:999px;
+      padding:6px 9px;
+      font-size:.72rem;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .tag.ok{
+      background:#ECFDF5;
+      color:#047857;
+    }
+
+    .tag.wait{
+      background:#FFFBEB;
+      color:#B45309;
+    }
+
+    .tag.alert{
+      background:#FEF2F2;
+      color:#B91C1C;
+    }
+
+    section{
+      padding:76px 0;
+    }
+
+    .section-head{
+      max-width:760px;
+      margin-bottom:34px;
+    }
+
+    .section-head.center{
+      margin-left:auto;
+      margin-right:auto;
+      text-align:center;
+    }
+
+    .section-kicker{
+      color:var(--blue);
+      font-weight:900;
+      font-size:.82rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+
+    h2{
+      font-size:clamp(2rem,3.6vw,3.55rem);
+      line-height:1;
+      letter-spacing:-.06em;
+      font-weight:950;
+    }
+
+    .section-head p{
+      margin-top:16px;
+      color:var(--ink-soft);
+      font-size:1.06rem;
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .feature{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .icon{
+      width:46px;
+      height:46px;
+      border-radius:16px;
+      background:#EFF6FF;
+      color:var(--blue);
+      display:grid;
+      place-items:center;
+      font-weight:950;
+      margin-bottom:18px;
+    }
+
+    .feature h3{
+      font-size:1.14rem;
+      letter-spacing:-.035em;
+      margin-bottom:9px;
+    }
+
+    .feature p{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .workflow{
+      background:var(--ink);
+      color:white;
+      border-radius:36px;
+      padding:44px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .workflow::before{
+      content:"";
+      position:absolute;
+      right:-100px;
+      top:-100px;
+      width:300px;
+      height:300px;
+      border-radius:50%;
+      background:rgba(29,78,216,.34);
+      filter:blur(10px);
+    }
+
+    .steps{
+      position:relative;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:14px;
+      margin-top:30px;
+    }
+
+    .step{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:20px;
+      padding:18px;
+      min-height:150px;
+    }
+
+    .step span{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:white;
+      color:var(--ink);
+      font-weight:950;
+      margin-bottom:14px;
+    }
+
+    .step strong{
+      display:block;
+      margin-bottom:7px;
+      letter-spacing:-.025em;
+    }
+
+    .step p{
+      color:#CBD5E1;
+      font-size:.88rem;
+    }
+
+    .pricing-card{
+      max-width:760px;
+      margin:0 auto;
+      background:white;
+      border:1px solid var(--line);
+      border-radius:34px;
+      box-shadow:var(--shadow);
+      padding:34px;
+      display:grid;
+      grid-template-columns:1fr .9fr;
+      gap:30px;
+      align-items:center;
+    }
+
+    .price{
+      display:flex;
+      align-items:flex-end;
+      gap:8px;
+      margin:18px 0 8px;
+    }
+
+    .price strong{
+      font-size:4rem;
+      line-height:.9;
+      letter-spacing:-.07em;
+    }
+
+    .price span{
+      color:var(--muted);
+      font-weight:750;
+      margin-bottom:8px;
+    }
+
+    .pricing-list{
+      list-style:none;
+      display:grid;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .pricing-list li{
+      display:flex;
+      gap:10px;
+      color:var(--ink-soft);
+      font-weight:650;
+    }
+
+    .usage{
+      background:#F8FAFC;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:22px;
+    }
+
+    .usage h3{
+      margin-bottom:12px;
+      letter-spacing:-.03em;
+    }
+
+    .usage-row{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px 0;
+      border-bottom:1px solid var(--line);
+      color:var(--ink-soft);
+      font-size:.94rem;
+    }
+
+    .usage-row:last-child{
+      border-bottom:0;
+    }
+
+    .usage-row strong{
+      color:var(--ink);
+    }
+
+    .cta{
+      background:linear-gradient(135deg,#0F172A,#1E3A8A);
+      color:white;
+      border-radius:38px;
+      padding:46px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:28px;
+    }
+
+    .cta h2{
+      max-width:720px;
+    }
+
+    .cta p{
+      color:#CBD5E1;
+      margin-top:14px;
+      max-width:620px;
+    }
+
+    .cta .btn-primary{
+      background:white;
+      color:var(--ink);
+      box-shadow:none;
+    }
+
+    footer{
+      padding:36px 0 46px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .footer-grid{
+      display:flex;
+      justify-content:space-between;
+      gap:22px;
+      flex-wrap:wrap;
+      border-top:1px solid var(--line);
+      padding-top:26px;
+    }
+
+    @media(max-width:980px){
+      .hero-grid,
+      .pricing-card{
+        grid-template-columns:1fr;
+      }
+
+      .features{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .steps{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .app-card{
+        transform:none;
+      }
+    }
+
+    @media(max-width:640px){
+      .container{
+        width:min(100% - 28px,1180px);
+      }
+
+      .hero{
+        padding:52px 0 46px;
+      }
+
+      section{
+        padding:52px 0;
+      }
+
+      .nav-actions .btn-secondary{
+        display:none;
+      }
+
+      .features,
+      .steps,
+      .app-body,
+      .kpi-grid{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        display:none;
+      }
+
+      .workflow,
+      .pricing-card,
+      .cta{
+        padding:26px;
+        border-radius:28px;
+      }
+
+      .cta{
+        display:block;
+      }
+
+      .cta .btn{
+        margin-top:24px;
+        width:100%;
+      }
+
+      .hero-cta .btn{
+        width:100%;
+      }
+
+      .price strong{
+        font-size:3.35rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="container nav">
+        <a href="index.html" class="brand" aria-label="Accueil Factorius">
+          <span class="brand-mark">F</span>
+          <span>Factorius</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Navigation principale">
+          <a href="#solution">Solution</a>
+          <a href="#conformite">Conformité 2026</a>
+          <a href="#recouvrement">Recouvrement</a>
+          <a href="#tarifs">Tarifs</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a class="btn btn-secondary" href="connexion.html">Connexion</a>
+          <a class="btn btn-primary" href="connexion.html">Commencer</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="dot"></span>
+              Facturation professionnelle conforme réforme 2026
+            </div>
+
+            <h1>Facturez. Transmettez. Relancez. Sans perdre le fil.</h1>
+
+            <p class="lead">
+              <strong>Factorius</strong> centralise vos devis, factures, avoirs, flux PDP, relances et mises en demeure dans un espace clair, pensé pour les indépendants, TPE et prestataires de services.
+            </p>
+
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="connexion.html">Créer mon espace</a>
+              <a class="btn btn-secondary" href="#tarifs">Voir l’offre</a>
+            </div>
+
+            <div class="proof-line">
+              <span><b class="check">✓</b> Devis & factures</span>
+              <span><b class="check">✓</b> Factur-X</span>
+              <span><b class="check">✓</b> Flux PDP</span>
+              <span><b class="check">✓</b> Relances intégrées</span>
+            </div>
+          </div>
+
+          <div class="mockup" aria-label="Aperçu du tableau de bord Factorius">
+            <div class="app-card">
+              <div class="app-inner">
+                <div class="app-topbar">
+                  <div class="window-dots">
+                    <i></i><i></i><i></i>
+                  </div>
+                  <span class="status-pill">Flux PDP prêt</span>
+                </div>
+
+                <div class="app-body">
+                  <aside class="sidebar">
+                    <div class="side-item active">Dashboard</div>
+                    <div class="side-item">Clients</div>
+                    <div class="side-item">Devis</div>
+                    <div class="side-item">Factures</div>
+                    <div class="side-item">Avoirs</div>
+                    <div class="side-item">Relances</div>
+                    <div class="side-item">Flux PDP</div>
+                  </aside>
+
+                  <div class="main-panel">
+                    <div class="dash-head">
+                      <div>
+                        <h3>Tableau de bord</h3>
+                        <small style="color:#64748B;font-weight:650;">Vue financière & conformité</small>
+                      </div>
+                      <span class="mini-btn">Nouvelle facture</span>
+                    </div>
+
+                    <div class="kpi-grid">
+                      <div class="kpi">
+                        <small>CA facturé</small>
+                        <strong>12 840 €</strong>
+                      </div>
+                      <div class="kpi">
+                        <small>À relancer</small>
+                        <strong>3</strong>
+                      </div>
+                      <div class="kpi">
+                        <small>PDP</small>
+                        <strong>98%</strong>
+                      </div>
+                    </div>
+
+                    <div class="invoice-card">
+                      <div class="invoice-row">
+                        <div>
+                          <strong>FAC-2026-0042</strong>
+                          <small>Client Martin — échéance 30 jours</small>
+                        </div>
+                        <span class="tag ok">Acceptée PDP</span>
+                      </div>
+
+                      <div class="invoice-row">
+                        <div>
+                          <strong>FAC-2026-0043</strong>
+                          <small>Studio Loire — facture échue</small>
+                        </div>
+                        <span class="tag alert">Relance prête</span>
+                      </div>
+
+                      <div class="invoice-row">
+                        <div>
+                          <strong>FAC-2026-0044</strong>
+                          <small>Agence Nova — transmission en cours</small>
+                        </div>
+                        <span class="tag wait">En attente</span>
+                      </div>
+                    </div>
+
+                    <div class="invoice-card">
+                      <div class="invoice-row">
+                        <div>
+                          <strong>Timeline facture</strong>
+                          <small>Brouillon → Factur-X → PDP → Paiement → Recouvrement</small>
+                        </div>
+                        <span class="tag ok">Suivi complet</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="solution">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-kicker">Solution</div>
+            <h2>Un logiciel de facturation, mais pas un simple générateur de PDF.</h2>
+            <p>
+              Factorius suit tout le cycle commercial : devis, facture, avoir, conformité, paiement, relance et bascule recouvrement.
+            </p>
+          </div>
+
+          <div class="features">
+            <article class="feature">
+              <div class="icon">01</div>
+              <h3>Devis, factures, avoirs</h3>
+              <p>Créez vos documents commerciaux avec une numérotation propre, des statuts clairs et un historique exploitable.</p>
+            </article>
+
+            <article class="feature">
+              <div class="icon">02</div>
+              <h3>Factur-X & réforme 2026</h3>
+              <p>Préparez vos factures structurées avec PDF lisible et données exploitables pour transmission électronique.</p>
+            </article>
+
+            <article class="feature">
+              <div class="icon">03</div>
+              <h3>Flux PDP</h3>
+              <p>Suivez les transmissions : brouillon, envoyé, accepté, rejeté, erreur à corriger ou facture conforme.</p>
+            </article>
+
+            <article class="feature">
+              <div class="icon">04</div>
+              <h3>Relances</h3>
+              <p>Détectez les factures échues et préparez vos relances clients sans repartir d’un fichier Excel artisanal.</p>
+            </article>
+
+            <article class="feature">
+              <div class="icon">05</div>
+              <h3>Mise en demeure</h3>
+              <p>Générez une mise en demeure cohérente avec le dossier facture, les dates, les montants et l’historique.</p>
+            </article>
+
+            <article class="feature">
+              <div class="icon">06</div>
+              <h3>Recouvrement</h3>
+              <p>Si le dossier bloque, basculez vers un parcours injonction de payer via Axe Flow, sans ressaisir tout le dossier.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="conformite">
+        <div class="container">
+          <div class="workflow">
+            <div class="section-head" style="margin-bottom:0;">
+              <div class="section-kicker" style="color:#93C5FD;">Conformité</div>
+              <h2>Le bon parcours : document, Factur-X, flux PDP, statut.</h2>
+              <p style="color:#CBD5E1;">
+                L’utilisateur travaille dans Factorius. La plateforme de dématérialisation reste en arrière-plan, comme un canal de transmission légal.
+              </p>
+            </div>
+
+            <div class="steps">
+              <div class="step">
+                <span>1</span>
+                <strong>Facture créée</strong>
+                <p>Client, lignes, TVA, échéance, conditions de paiement.</p>
+              </div>
+
+              <div class="step">
+                <span>2</span>
+                <strong>Factur-X générée</strong>
+                <p>PDF + données structurées pour lecture machine.</p>
+              </div>
+
+              <div class="step">
+                <span>3</span>
+                <strong>Transmission PDP</strong>
+                <p>Envoi du flux vers la plateforme connectée.</p>
+              </div>
+
+              <div class="step">
+                <span>4</span>
+                <strong>Statut suivi</strong>
+                <p>Acceptée, rejetée, en attente ou correction requise.</p>
+              </div>
+
+              <div class="step">
+                <span>5</span>
+                <strong>Paiement piloté</strong>
+                <p>Échéance, relance, mise en demeure ou recouvrement.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="recouvrement">
+        <div class="container">
+          <div class="section-head center">
+            <div class="section-kicker">Recouvrement</div>
+            <h2>Une facture impayée ne doit pas dormir dans un tableau.</h2>
+            <p>
+              Factorius transforme une facture échue en action : relance, mise en demeure, puis dossier de recouvrement si nécessaire.
+            </p>
+          </div>
+
+          <div class="features">
+            <article class="feature">
+              <div class="icon">A</div>
+              <h3>Retard détecté</h3>
+              <p>Le tableau de bord remonte les échéances dépassées et les montants à risque.</p>
+            </article>
+
+            <article class="feature">
+              <div class="icon">B</div>
+              <h3>Relance structurée</h3>
+              <p>Relance simple, relance ferme, dernier rappel : chaque étape est tracée dans le dossier.</p>
+            </article>
+
+            <article class="feature">
+              <div class="icon">C</div>
+              <h3>Passage Axe Flow</h3>
+              <p>Quand le client ne paie pas, le dossier peut être transmis vers une procédure d’injonction de payer.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="tarifs">
+        <div class="container">
+          <div class="section-head center">
+            <div class="section-kicker">Tarif</div>
+            <h2>Une offre claire, sans usine à gaz.</h2>
+            <p>
+              Un abonnement professionnel pour facturer proprement, suivre les flux et agir vite en cas d’impayé.
+            </p>
+          </div>
+
+          <div class="pricing-card">
+            <div>
+              <div class="eyebrow" style="margin-bottom:12px;box-shadow:none;">
+                <span class="dot"></span>
+                Offre professionnelle
+              </div>
+
+              <div class="price">
+                <strong>29€</strong>
+                <span>/ mois</span>
+              </div>
+
+              <p style="color:#64748B;font-weight:650;">
+                Devis, factures, avoirs, Factur-X, flux PDP, relances et mises en demeure.
+              </p>
+
+              <ul class="pricing-list">
+                <li><b class="check">✓</b> Documents commerciaux illimités en brouillon</li>
+                <li><b class="check">✓</b> Suivi paiement et échéances</li>
+                <li><b class="check">✓</b> Tableau de bord conformité</li>
+                <li><b class="check">✓</b> Lien recouvrement vers Axe Flow</li>
+              </ul>
+
+              <div style="margin-top:24px;">
+                <a class="btn btn-primary" href="connexion.html">Démarrer</a>
+              </div>
+            </div>
+
+            <div class="usage">
+              <h3>Volume de flux</h3>
+              <div class="usage-row">
+                <span>0 à 50 factures / mois</span>
+                <strong>inclus</strong>
+              </div>
+              <div class="usage-row">
+                <span>51 à 300 flux</span>
+                <strong>0,10€ / flux</strong>
+              </div>
+              <div class="usage-row">
+                <span>301 à 1000 flux</span>
+                <strong>0,07€ / flux</strong>
+              </div>
+              <div class="usage-row">
+                <span>1000+ flux</span>
+                <strong>sur devis</strong>
+              </div>
+              <p style="margin-top:14px;color:#64748B;font-size:.88rem;">
+                Le coût de transmission dépendra du partenaire PDP retenu et sera précisé avant activation du flux conforme.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="cta">
+            <div>
+              <h2>Factorius prépare la facturation professionnelle à l’après-PDF.</h2>
+              <p>
+                Un outil sobre, clair et exploitable : facturer, transmettre, suivre, relancer et préparer le recouvrement.
+              </p>
+            </div>
+            <a class="btn btn-primary" href="connexion.html">Créer mon espace</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-grid">
+        <div>
+          <strong style="color:#0F172A;">Factorius</strong><br>
+          Facturation professionnelle conforme réforme 2026.
+        </div>
+        <div>
+          Devis · Factures · Avoirs · PDP · Relances · Mise en demeure
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
